@@ -1,8 +1,13 @@
 // best in chrome
-$total: 300; // total particles
-$orb-size: 100px;
-$particle-size: 2px;
-$time: 14s;
+$total: 1000;
+$orb-size: 250px;
+$particle-size1: 2px;
+$particle-size2: 3px;
+$particle-size3: 4px;
+$particle-size4: 5px;
+$particle-size5: 6px;
+
+$time: 10s;
 $base-hue: 0; // change for diff colors (180 is nice)
 
 html, body {
@@ -10,8 +15,11 @@ html, body {
 }
 
 body {
-  background: black;
   overflow: hidden; // no scrollbars..
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(#1d254d, #000);
 }
 
 .wrap {
@@ -31,10 +39,26 @@ body {
   }
 }
 
+.a {
+  position: absolute;
+  width: $particle-size1;
+  height: $particle-size1;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.b {
+  position: absolute;
+  width: $particle-size2;
+  height: $particle-size2;
+  border-radius: 50%;
+  opacity: 0;
+}
+
 .c {
   position: absolute;
-  width: $particle-size;
-  height: $particle-size;
+  width: $particle-size3;
+  height: $particle-size3;
   border-radius: 50%;
   opacity: 0;
 }
@@ -44,10 +68,22 @@ body {
   $y: (random(360) * 1deg); // random to rotateX
   $hue: ((40/$total * $i) + $base-hue); // set hue
 
-  .c:nth-child(#{$i}){ // grab the nth particle
+  .a:nth-child(#{$i}){ // grab the nth particle
     animation: orbit#{$i} $time infinite;
     animation-delay: ($i * .01s);
     background-color: hsla($hue, 100%, 50%, 1);
+  }
+
+  .b:nth-child(#{$i}){ // grab the nth particle
+    animation: orbit#{$i} $time infinite;
+    animation-delay: ($i * .01s);
+    background-color: hsla($hue, 40%, 30%, 1);
+  }
+
+  .c:nth-child(#{$i}){ // grab the nth particle
+    animation: orbit#{$i} $time infinite;
+    animation-delay: ($i * .01s);
+    background-color: rgb(0, 150, 173);
   }
 
   @keyframes orbit#{$i}{
